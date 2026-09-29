@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>📐 8번 도전! 문제 풀이 영상</title>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fdf3e7;--card:#fff;--ink:#3b3350;--mint:#c9f0dd;--mintd:#3aa57a;--peach:#ffd9c7;--lav:#e4dcff;--sun:#ffe28a;--pink:#ff7a9c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a2540;--card:#3a3357;--ink:#fff5e8;--mint:#2d4d47;--peach:#5a4149;--lav:#4a4272}}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jua','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:18px;display:flex;justify-content:center}
+main{width:100%;max-width:480px;padding:14px}
+h1{font-size:24px;margin:6px 4px 12px;text-align:center;line-height:1.3}
+.card{background:var(--card);border-radius:22px;padding:14px;box-shadow:0 4px 0 rgba(120,100,160,.18)}
+.problem{background:var(--lav);margin-bottom:12px;font-size:19px;line-height:1.5}
+.problem b{background:var(--sun);color:#3b3350;border-radius:8px;padding:0 6px}
+.player{background:#1f1a33;border-radius:22px;padding:8px;box-shadow:0 6px 0 rgba(60,40,100,.3)}
+.stage{position:relative;background:linear-gradient(#fffaf0,#ffeede);border-radius:16px;overflow:hidden;aspect-ratio:320/250}
+.stage svg{width:100%;height:100%;display:block;transition:opacity .6s}
+.stage svg.dim{opacity:.12}
+.stepchip{position:absolute;left:8px;top:8px;background:var(--mintd);color:#fff;border-radius:14px;padding:2px 12px;font-size:15px;z-index:3}
+#over{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;z-index:2;pointer-events:none;color:#3b3350;text-align:center}
+.big{font-size:clamp(26px,8.5vw,40px);opacity:0;transform:scale(.6);transition:all .5s cubic-bezier(.3,1.6,.5,1)}
+.big.on{opacity:1;transform:none}
+.big .q{display:inline-block;background:var(--sun);border-radius:10px;padding:0 10px;color:#e0457a}
+.big .u{font-size:.5em;opacity:.7}
+.hl{fill:#ffe28a}
+@keyframes twinkle{0%,100%{filter:drop-shadow(0 0 0 #ffb300);opacity:1}50%{filter:drop-shadow(0 0 8px #ffb300);opacity:.55}}
+.twk{animation:twinkle .7s 5}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop .7s both}
+.hid{opacity:0;transition:opacity .6s}.show{opacity:1}
+.sub{min-height:86px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;font-size:18px;line-height:1.45;padding:8px 10px;word-break:keep-all}
+.bar{height:8px;background:#453d66;border-radius:6px;margin:2px 6px 8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--sun);border-radius:6px}
+.ctrl{display:flex;gap:6px}
+button{font:inherit;border:0;border-radius:16px;padding:12px 6px;font-size:17px;color:#3b3350;cursor:pointer;min-height:48px;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+button:active{transform:translateY(2px);box-shadow:none}
+button:focus-visible,input:focus-visible{outline:3px solid #ff7a9c;outline-offset:2px}
+.ctrl button{flex:1}
+#bPlay{background:var(--mint)}#bPause{background:var(--peach)}#bReset{background:var(--lav)}
+#bQuiz{display:none;width:100%;margin-top:12px;background:var(--pink);color:#fff;font-size:20px;padding:14px;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.03)}}
+.modal{position:fixed;inset:0;background:rgba(30,20,60,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+.modal.on{display:flex}
+.box{background:var(--card);border-radius:24px;padding:20px;width:100%;max-width:400px;text-align:center}
+.eq{font-size:30px;margin:14px 0;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.eq input{width:84px;font:inherit;font-size:30px;text-align:center;border:3px dashed var(--pink);border-radius:14px;padding:6px;background:var(--bg);color:var(--ink)}
+#fb{min-height:52px;font-size:19px;line-height:1.4}
+.row{display:flex;gap:8px}.row button{flex:1}
+.ok{background:var(--mint)}.cl{background:var(--lav)}
+.conf{position:absolute;top:-20px;font-size:22px;z-index:4;pointer-events:none;animation:fall 2.2s linear forwards}
+@keyframes fall{to{transform:translateY(300px) rotate(540deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){.twk,#bQuiz{animation:none}.conf{display:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>📐 8번 도전! 문제 풀이 영상</h1>
+<div class="card problem">평행사변형 모양의 천 조각의 넓이는 <b>96 cm²</b>입니다. 밑변의 길이가 <b>12 cm</b>일 때 높이는 몇 cm인가요?</div>
+
+<div class="player">
+  <div class="stage" id="stage">
+    <div class="stepchip" id="chip">▶ 눌러서 시작!</div>
+    <svg id="svg" viewBox="0 0 320 250" role="img" aria-label="밑변 12cm 넓이 96cm²인 평행사변형">
+      <g id="para" class="hid">
+        <polygon id="poly" points="60,190 250,190 285,70 95,70" fill="#c9f0dd" stroke="#3aa57a" stroke-width="4" stroke-linejoin="round"/>
+        <text x="172" y="138" text-anchor="middle" font-size="26" fill="#3b3350" id="areaT" font-family="Jua,sans-serif">넓이 96 cm²</text>
+      </g>
+      <g id="baseG" class="hid">
+        <line x1="60" y1="208" x2="250" y2="208" stroke="#e0457a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="60" y1="201" x2="60" y2="215" stroke="#e0457a" stroke-width="4"/><line x1="250" y1="201" x2="250" y2="215" stroke="#e0457a" stroke-width="4"/>
+        <text x="155" y="238" text-anchor="middle" font-size="26" fill="#e0457a" font-family="Jua,sans-serif">밑변 12 cm</text>
+      </g>
+      <g id="hG" class="hid">
+        <line x1="95" y1="70" x2="95" y2="190" stroke="#7a5cff" stroke-width="3.5" stroke-dasharray="7 6"/>
+        <path d="M95 174 H111 V190" fill="none" stroke="#7a5cff" stroke-width="3"/>
+        <text id="hT" x="88" y="136" text-anchor="end" font-size="28" fill="#7a5cff" font-family="Jua,sans-serif">□ cm</text>
+      </g>
+    </svg>
+    <div id="over"></div>
+  </div>
+  <div class="sub" id="sub">▶ 재생 버튼을 눌러 풀이 영상을 시작해요!</div>
+  <div class="bar"><i id="prog"></i></div>
+  <div class="ctrl">
+    <button id="bPlay">▶ 재생</button><button id="bPause">❚❚ 일시정지</button><button id="bReset">↺ 처음부터</button>
+  </div>
+</div>
+<button id="bQuiz">✍️ 내가 직접 풀어서 확인해보기</button>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="qt">
+  <div class="box">
+    <div id="qt" style="font-size:22px">✍️ 직접 풀어봐요!</div>
+    <div style="margin-top:8px">□에 알맞은 수를 넣어 식을 완성해요.</div>
+    <div class="eq">12 × <input id="ans" type="number" inputmode="numeric" aria-label="□에 들어갈 수"> = 96</div>
+    <div id="fb" aria-live="polite"></div>
+    <div class="row"><button class="ok" id="bCheck">확인하기</button><button class="cl" id="bClose">닫기</button></div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const sub=$('sub'),over=$('over'),svg=$('svg'),chip=$('chip'),prog=$('prog');
+let token=0,paused=false,playing=false,speaking=null;
+const synth=window.speechSynthesis;
+let voice=null;
+function pickVoice(){if(!synth)return;voice=synth.getVoices().find(v=>/^ko/i.test(v.lang))||null}
+if(synth){pickVoice();synth.onvoiceschanged=pickVoice}
+
+const wait=async(ms,t)=>{let e=0;while(e<ms){if(t!==token)throw 0;await new Promise(r=>setTimeout(r,50));if(!paused)e+=50}};
+
+async function say(text,t,minMs){
+  sub.textContent=text;
+  let done=!synth;
+  if(synth){
+    synth.cancel();
+    const u=new SpeechSynthesisUtterance(text);u.lang='ko-KR';u.rate=.95;u.pitch=1.15;
+    if(voice)u.voice=voice;
+    u.onend=()=>{done=true};u.onerror=()=>{done=true};
+    synth.speak(u);
+  }
+  let e=0,max=Math.max(minMs,text.length*300);
+  while(true){
+    if(t!==token)throw 0;
+    await new Promise(r=>setTimeout(r,50));
+    if(paused)continue;
+    e+=50;
+    if(e>=max||(done&&e>=minMs))break;
+  }
+}
+const show=(id,on=true)=>{const g=$(id);g.classList.toggle('hid',!on);g.classList.toggle('show',on)};
+const twinkle=el=>{el.classList.remove('twk');void el.getBBox;el.getBoundingClientRect();el.classList.add('twk')};
+const setOver=h=>{over.innerHTML=h};
+const on=async(sel,t,d=60)=>{await wait(d,t);const e=over.querySelector(sel);if(e)e.classList.add('on')};
+const setProg=(n)=>{prog.style.width=n+'%'};
+
+function confetti(){
+  const em=['🎉','✨','🎊','⭐','💛','🌈'],st=$('stage');
+  for(let i=0;i<28;i++){const s=document.createElement('span');s.className='conf';s.textContent=em[i%em.length];
+    s.style.left=Math.random()*94+'%';s.style.animationDelay=Math.random()*.9+'s';s.style.fontSize=16+Math.random()*16+'px';
+    st.appendChild(s);setTimeout(()=>s.remove(),3400)}
+}
+function resetStage(){
+  ['para','baseG','hG'].forEach(i=>show(i,false));
+  svg.classList.remove('dim');setOver('');
+  $('hT').textContent='□ cm';$('hT').setAttribute('fill','#7a5cff');
+  $('poly').classList.remove('twk');$('areaT').classList.remove('twk');
+  document.querySelectorAll('.conf').forEach(e=>e.remove());
+  chip.textContent='▶ 눌러서 시작!';setProg(0);
+}
+
+async function movie(t){
+  // STEP 1
+  chip.textContent='STEP 1 · 문제 이해하기';setProg(5);
+  show('para');
+  const p=$('para');p.classList.remove('pop');void p.getBoundingClientRect();p.classList.add('pop');
+  await wait(900,t);show('baseG');show('hG');
+  const s1=say('먼저 문제에서 알려준 조건인 밑변 12 cm와 넓이 96 cm²를 확인해요.',t,5200);
+  await wait(800,t);
+  twinkle($('baseG'));await wait(2000,t);twinkle($('poly'));twinkle($('areaT'));
+  await s1;setProg(25);
+  // STEP 2
+  chip.textContent='STEP 2 · 공식 떠올리기';svg.classList.add('dim');
+  setOver('<div class="big" id="f1">평행사변형의 넓이</div><div class="big" id="f2">= 밑변 × 높이</div>');
+  const s2=say('평행사변형의 넓이는 밑변과 높이를 곱해서 구한다는 것을 떠올려봐요!',t,5200);
+  await on('#f1',t,300);await on('#f2',t,900);await s2;setProg(50);
+  // STEP 3
+  chip.textContent='STEP 3 · 식 세우기';
+  setOver('<div class="big" id="e0" style="font-size:clamp(20px,6vw,28px)">넓이 = 밑변 × 높이</div><div class="big" id="e1">12 × <span class="q">□</span> = 96</div><div class="big" id="e2" style="color:#3aa57a">□ = 96 ÷ 12</div>');
+  const s3=say('12에 높이 □를 곱해서 96이 되었으므로, 높이 □는 넓이 96을 밑변 12로 나누어 구할 수 있어요.',t,8500);
+  await on('#e0',t,300);await on('#e1',t,1400);
+  await wait(600,t);
+  await on('#e2',t,1200);await s3;setProg(75);
+  // STEP 4
+  chip.textContent='STEP 4 · 답 완성!';
+  setOver('<div class="big" id="d1">96 ÷ 12 = <span id="dn">?</span> <span class="u">(cm)</span></div>');
+  const s4=say('따라서 정답은 8 cm입니다! 참 잘했어요!',t,4200);
+  await on('#d1',t,300);await wait(700,t);
+  for(let n=1;n<=8;n++){$('dn').textContent=n;await wait(110,t)}
+  $('dn').style.color='#e0457a';
+  await wait(1200,t);
+  setOver('');svg.classList.remove('dim');
+  const h=$('hT');h.textContent='8 cm';h.setAttribute('fill','#e0457a');h.setAttribute('font-size','40');
+  h.classList.remove('pop');void h.getBoundingClientRect();h.classList.add('pop');
+  confetti();await s4;setProg(100);
+  await wait(800,t);
+}
+
+function setBtns(){$('bPlay').textContent=(playing&&!paused)?'▶ 재생 중':(paused?'▶ 이어서':'▶ 재생')}
+async function play(){
+  if(playing){if(paused){paused=false;synth&&synth.resume();setBtns()}return}
+  const t=++token;playing=true;paused=false;resetStage();$('bQuiz').style.display='none';setBtns();
+  try{await movie(t);playing=false;setBtns();chip.textContent='🎉 영상 끝!';$('bQuiz').style.display='block';
+    $('bQuiz').scrollIntoView({behavior:'smooth',block:'nearest'})}
+  catch(e){}
+}
+$('bPlay').onclick=play;
+$('bPause').onclick=()=>{if(playing&&!paused){paused=true;synth&&synth.pause();setBtns()}};
+$('bReset').onclick=()=>{token++;playing=false;paused=false;synth&&synth.cancel();resetStage();
+  sub.textContent='▶ 재생 버튼을 눌러 풀이 영상을 시작해요!';$('bQuiz').style.display='none';setBtns()};
+
+// Quiz
+const modal=$('modal'),ans=$('ans'),fb=$('fb');
+$('bQuiz').onclick=()=>{modal.classList.add('on');ans.value='';fb.textContent='';setTimeout(()=>ans.focus(),50)};
+$('bClose').onclick=()=>modal.classList.remove('on');
+function check(){
+  const v=ans.value.trim();
+  if(v===''){fb.textContent='숫자를 넣어 주세요! 🙂';return}
+  if(+v===8){fb.innerHTML='🎉 정답이에요! 12 × 8 = 96<br>높이는 8 cm! 참 잘했어요!';confetti();
+    if(synth){synth.cancel();const u=new SpeechSynthesisUtterance('정답이에요! 참 잘했어요!');u.lang='ko-KR';synth.speak(u)}}
+  else fb.innerHTML='앗, 아까워요! 🤔<br>12 × '+v+' = '+(12*+v)+' 이에요. 96이 되는 수를 찾아봐요!';
+}
+$('bCheck').onclick=check;
+ans.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('on')});
+</script>
+</body>
+</html>
